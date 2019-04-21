@@ -57,3 +57,5 @@ class MainActivity : AppCompatActivity(), TabLayout.BaseOnTabSelectedListener<Ta
 
     }
 }
+
+class Product(val barcode: String, val name: String)

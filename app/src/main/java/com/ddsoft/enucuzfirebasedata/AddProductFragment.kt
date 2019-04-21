@@ -8,6 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.fragment_add_product.*
 
@@ -30,6 +34,16 @@ class AddProductFragment : Fragment() {
             scanner.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES)
             scanner.initiateScan()
         }
+
+        btnSaveProduct_addProduct.setOnClickListener {
+            if (!txtProductBarcode_addProduct.text.isEmpty() && !txtProductName_addProduct.text.isEmpty()) {
+
+                registerProducttoDatabase()
+
+            } else {
+                Toast.makeText(activity, "Lütfen boş alan bırakmayınız!", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     companion object {
@@ -51,6 +65,36 @@ class AddProductFragment : Fragment() {
                 super.onActivityResult(requestCode, resultCode, data)
             }
         }
+    }
+
+    private fun registerProducttoDatabase() {
+
+        val rootRef = FirebaseDatabase.getInstance().reference
+        rootRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.hasChild("/products/${txtProductBarcode_addProduct.text}")) {
+                    Toast.makeText(activity, "Ürün daha önce kayıt edilmiştir.", Toast.LENGTH_SHORT).show()
+                    txtProductName_addProduct.setText("")
+                    txtProductBarcode_addProduct.setText("")
+                } else {
+                    val ref =
+                        FirebaseDatabase.getInstance().getReference("/products/${txtProductBarcode_addProduct.text}")
+                    val product =
+                        Product(txtProductBarcode_addProduct.text.toString(), txtProductName_addProduct.text.toString())
+                    ref.setValue(product)
+                        .addOnSuccessListener {
+                            Toast.makeText(activity, "Ürün başarıyla kayıt edildi.", Toast.LENGTH_SHORT).show()
+                            txtProductName_addProduct.setText("")
+                            txtProductBarcode_addProduct.setText("")
+                        }
+                }
+            }
+        })
+
     }
 
 }
