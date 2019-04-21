@@ -1,5 +1,6 @@
 package com.ddsoft.enucuzfirebasedata
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -46,5 +47,13 @@ class MainActivity : AppCompatActivity(), TabLayout.BaseOnTabSelectedListener<Ta
 
     override fun onPageSelected(position: Int) {
         Log.v("TAG", "onPageSelected")
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        for (fragment in supportFragmentManager.fragments) {
+            fragment.onActivityResult(requestCode, resultCode, data)
+        }
+
     }
 }
