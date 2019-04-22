@@ -9,8 +9,8 @@ Geliştirmekte olduğum EnUcuz isimli uygulamada kullandığım verilerimi Fireb
 + Ürün Fiyatı Güncelleme ekranında ise, yine yeni kayıtta olduğu gibi barkod bilgisi verilerek, ilgili market seçimi yapıldıktan sonra fiyat bilgisi girilerek FirebaseDatabaseden bilgi güncellemesi yapılmaktadır.
 
 Dependencies
-  + Firebase - com.google.firebase:firebase-core:16.0.8
-  + FirebaseDatabase - com.google.firebase:firebase-database:16.1.0
-  + Zxing Barcode Reader - com.journeyapps:zxing-android-embedded:3.6.0
-  + ViewPager - androidx.viewpager:viewpager:1.0.0
-  + TabLayout - com.google.android.material:material:1.0.0
+> + Firebase - com.google.firebase:firebase-core:16.0.8
+> + FirebaseDatabase - com.google.firebase:firebase-database:16.1.0
+> + Zxing Barcode Reader - com.journeyapps:zxing-android-embedded:3.6.0
+> + ViewPager - androidx.viewpager:viewpager:1.0.0
+> + TabLayout - com.google.android.material:material:1.0.0
