@@ -83,9 +83,18 @@ class AddProductFragment : Fragment() {
                 } else {
                     val ref =
                         FirebaseDatabase.getInstance().getReference("/products/${txtProductBarcode_addProduct.text}")
+                    val refMar = FirebaseDatabase.getInstance()
+                        .getReference("/products/${txtProductBarcode_addProduct.text}/markets")
                     val product =
                         Product(txtProductBarcode_addProduct.text.toString(), txtProductName_addProduct.text.toString())
+                    val markets = Markets(0.0, 0.0, 0.0, 0.0, 0.0)
                     ref.setValue(product)
+                        .addOnSuccessListener {
+                            Toast.makeText(activity, "Ürün başarıyla kayıt edildi.", Toast.LENGTH_SHORT).show()
+                            txtProductName_addProduct.setText("")
+                            txtProductBarcode_addProduct.setText("")
+                        }
+                    refMar.setValue(markets)
                         .addOnSuccessListener {
                             Toast.makeText(activity, "Ürün başarıyla kayıt edildi.", Toast.LENGTH_SHORT).show()
                             txtProductName_addProduct.setText("")

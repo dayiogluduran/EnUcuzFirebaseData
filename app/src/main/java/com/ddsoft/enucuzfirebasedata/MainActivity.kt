@@ -59,3 +59,4 @@ class MainActivity : AppCompatActivity(), TabLayout.BaseOnTabSelectedListener<Ta
 }
 
 class Product(val barcode: String, val name: String)
+class Markets(val migros: Double, val bim: Double, val carrefour: Double, val a101: Double, val sok: Double)

@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="ürün barkodu giriniz"
+            android:inputType="number"
             android:paddingLeft="16dp"
             android:textSize="24sp"/>
 
@@ -34,6 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="ürün fiyatını giriniz"
+            android:inputType="numberDecimal"
             android:paddingLeft="16dp"
             android:textSize="24sp"/>
 
